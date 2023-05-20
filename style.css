@@ -1,0 +1,105 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background-image:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url('images/track.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+.heading{
+    color: #613B1C;
+    text-align: center;
+    margin-top: 2.1em;
+    margin-bottom: 1.5em;
+    font-size: 200%;
+    padding: 10px;
+    transition: 0.0s ease;
+    background:linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3));
+}
+.container{
+    max-width: 750px;
+    margin: auto;
+    box-shadow: 0 0.5rem 1rem 0.6rem rgba(0,0,0,0.45);
+    border-radius: 16px;
+    padding: 2em;
+    background:linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.3));
+}
+.buttons{
+    margin-bottom:2em;
+    display: flex;
+    max-width: 50%;
+    border-radius: 8px;
+}
+.buttons button{
+    padding: 8px 12px;
+    width: 50%;
+    border: 2px solid black;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.buttons button.current{
+    background-color: #613B1C;
+    border: 2px solid #613B1C;
+    color: white;
+    font-weight: normal;
+    transition: 0.3s ease;
+}
+.buttons button:hover{
+    cursor: pointer;
+}
+#signup-btn{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-right: none;
+}
+#login-btn{
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.login-form{
+    display: none;
+}
+.login-form input,.signup-form input,.signup-form p,.login-form p{
+    display: block;
+    padding: 0.65em;
+    margin: 1em auto;
+    font-size: 1.13em;
+    width: 85%;
+    border-radius: 5px;
+    border: none;
+}
+.signup-form p,.login-form p{
+    margin: 0.1em auto;
+}
+input[type=text],input[type=email],input[type=password]{
+    background:linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.8));
+}
+input[type=submit]{
+    color: white;
+    background-color: #613B1C !important;
+    width: 18%;
+    border: none;
+    padding: 12px auto;
+    font-size: 1.24em;
+    margin: auto;
+}
+input[type=submit]:hover{
+    cursor: pointer;
+}
+.login-form p,.signup-form p{
+    font-size: 1.2em;
+    color: rgb(158, 17, 17);
+    font-weight: bold;
+    text-decoration: wavy;
+}
+.login-form p:hover,.signup-form p:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+::placeholder{
+    color: black;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Form Validation</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        import Swal from 'sweetalert2';
+        const Swal=require('sweetalert2');      
+    </script>
+    <!-- Syntax for Inserting an image in README.md file in Github -->
+    <!-- ![Alt text](image link) -->
+</head>
+<body>
+    <h2 class="heading">SIGNUP FORM</h2>
+    <div class="container">
+        <center>
+            <section class="buttons">
+                <button class="current" id="signup-btn" onclick=showSignup()>SIGNUP</button>
+                <button id="login-btn" onclick=showLogin()>LOGIN</button>
+            </section>
+        </center>
+        <section class="signup-form">
+            <form  method="post" id="signup-form">
+                <input type="text" id="newName" name="newName" placeholder="Enter your Name" pattern="[A-z a-z]{3,20}" title="UserName should be atleat 3-20 characters long. No special characters are allowed" autocomplete="off" spellcheck="false" autofocus required>
+                <input type="email" id="newMail" name="newMail" placeholder="Enter your Email Id" autocomplete="off" spellcheck="false" required>
+                <input type="password" id="newPassword" name="newPassword" placeholder="Enter Your Password" minlength="5" required>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Your Password" minlength="5" required>
+                <p onclick="showLogin()">Already Registered?</p>
+                <input type="submit" id="signup" name="signup" class="current">
+            </form>
+        </section>
+        <section class="login-form">
+            <form method="post">
+                <input type="text" id="regName" name="regName" placeholder="Enter your Name" pattern="[A-z a-z]{3,20}" title="UserName should be atleat 3-20 characters long. No special characters are allowed" autocomplete="off" spellcheck="false" autofocus required>
+                <input type="email" id="regMail" name="regMail" placeholder="Enter your Emaid Id" minlength="5" autocomplete="off" spellcheck="false" required>
+                <input type="password" id="regPassword" name="regPassword" placeholder="Enter Your Password" minlength="5" required>
+                <p onclick="showSignup()">Haven't yet Registered?</p>
+                <input type="submit" id="login" name="login">
+            </form>
+        </section>
+    </div>
+</body>
+<script>
+    function showSignup(){
+        document.querySelector('.signup-form').style.display="block";
+        document.querySelector('.login-form').style.display="none";
+        document.getElementById('signup-btn').classList.add("current");
+        document.getElementById('login-btn').classList.remove("current");
+        document.querySelector('.heading').innerHTML='SIGNUP FORM';
+    }
+    function showLogin(){
+        document.querySelector('.login-form').style.display="block";
+        document.querySelector('.signup-form').style.display="none";
+        document.getElementById('login-btn').classList.add("current");
+        document.getElementById('signup-btn').classList.remove("current");
+        document.querySelector('.heading').innerHTML='LOGIN FORM';
+    }
+
+    const form=document.querySelector('#signup-form');
+
+    form.addEventListener('submit', function validatePassword(e){
+
+        e.preventDefault();
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if(newPassword!="" & confirmPassword!="" & newPassword!=confirmPassword){
+
+            const ToastError = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            ToastError.fire({
+                icon: 'warning',
+                title: 'Passwords doesn\'t match'
+            })
+        }
+
+        else if(newPassword!="" & confirmPassword!="")
+        {
+            const ToastSuccess = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                },
+            })
+
+            ToastSuccess.fire({
+                icon: 'success',
+                title: 'Signed in successfully'
+            })
+            setTimeout(submitForm,3000);
+        }
+    });
+
+    function submitForm(){
+        form.submit();
+    }
+</script>
+</html>
